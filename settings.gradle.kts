@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "SmartOrder"
 include(":app")
- 
+include(":smartOrder_app")
