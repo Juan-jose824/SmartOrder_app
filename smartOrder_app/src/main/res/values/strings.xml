@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">smartOrder_app</string>
+    <string name="logintext">Iniciar sesión</string>
+    <string name="emailinputText">Correo eléctronico</string>
+    <string name="password">contraseña</string>
+    <string name="no_account">¿No tienes cuenta?</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="singin">Registrarse</string>
 </resources>
