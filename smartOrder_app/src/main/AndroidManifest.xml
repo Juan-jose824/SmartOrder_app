@@ -19,7 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".SinIn"
+            android:theme="@style/Theme.SmartOrder"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true">
+        </activity>
+        <activity android:name=".Profile">
+        </activity>
+        <activity android:name=".Restaurant">
+        </activity>
     </application>
 
 </manifest>
