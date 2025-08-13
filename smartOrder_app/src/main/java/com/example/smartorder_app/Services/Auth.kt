@@ -9,23 +9,74 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import org.json.JSONObject
+import utils.Cellphone
+import utils.Name
 import java.io.IOException
 
 private val client = OkHttpClient()
 
-val BACK_URI = "https://csb2wwrf-5102.usw3.devtunnels.ms/"
+private val BACK_URI = "https://csb2wwrf-5102.usw3.devtunnels.ms/auth/"
 
-fun login(
-    user: String,
+
+fun getUserData(
+    token: String,
+    onResult: (Boolean, String?) -> Unit
+) {
+    val url = "${BACK_URI}userData"
+
+    val request = Request.Builder()
+        .url(url)
+        .addHeader("Authorization", "Bearer $token")
+        .get()
+        .build()
+
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            Log.e("HTTP", "Error: ${e.message}")
+            onResult(false, null)
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            val responseBody = response.body?.string()
+            if (response.isSuccessful && responseBody != null) {
+                try {
+                    val jsonResponse = JSONObject(responseBody)
+                    val data = jsonResponse.optString("data")
+                    onResult(true, data)
+                } catch (e: Exception) {
+                    onResult(false, null)
+                }
+            } else {
+                val data = responseBody?.let { JSONObject(it).optString("data") }
+                onResult(false, data)
+            }
+        }
+    })
+}
+
+fun newRestaurant(
+    name: String,
+    description: String,
+    owner: String,
     email: String,
+    number: String,
+    category: String,
+    token: String,
     onResult: (Boolean, String?) -> Unit // callback con resultado y mensaje
 ) {
     val json = JSONObject()
-    json.put("user", user)
+    json.put("name", name)
+    json.put("description", description)
+    json.put("owner", owner)
     json.put("email", email)
+    json.put("countryCode", "+52")
+    json.put("number", number)
+    json.put("category", category)
 
+    //name, cellphone, password, email, role
     val request = Request.Builder()
-        .url(BACK_URI + "newUser")
+        .url(BACK_URI + "addRestaurant")
+        .addHeader("Authorization", "Bearer $token")
         .post(RequestBody.create("application/json".toMediaType(), json.toString()))
         .build()
 
