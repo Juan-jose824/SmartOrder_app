@@ -16,11 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.smartorder_app.ui.theme.SmartOrderTheme
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import utils.Cellphone
 import utils.InternalData
-import utils.Name
-import utils.UserConfig
 import androidx.fragment.app.Fragment
+import com.example.smartorder_app.utils.Cellphone
+import com.example.smartorder_app.utils.Name
+import com.example.smartorder_app.utils.UserConfig
 
 class MainActivity : AppCompatActivity() {
     private lateinit var config: UserConfig

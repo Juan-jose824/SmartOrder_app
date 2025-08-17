@@ -12,4 +12,7 @@
     <string name="cellphone">Número de telefono</string>
     <string name="fatherName">Apellido paterno</string>
     <string name="motherName">Apellido materno</string>
+    <string name="nombre_del_restaurante">Nombre del Restaurante</string>
+    <string name="abierto">Abierto</string>
+    <string name="men">Menú</string>
 </resources>

@@ -1,27 +1,8 @@
 package utils
 
 import android.content.Context
+import com.example.smartorder_app.utils.UserConfig
 import com.google.gson.Gson
-
-data class UserConfig(
-    val name: Name,
-    val email: String,
-    val cellphone: Cellphone,
-    val role: String,
-    val token: String,
-    var isLoggedIn: Boolean = false
-)
-
-data class Name(
-    val name: String,
-    val fatherName: String,
-    val motherName: String
-)
-
-data class Cellphone(
-    val countryCode: String,
-    val number: String
-)
 
 class InternalData(private val context: Context) {
     private val gson = Gson()

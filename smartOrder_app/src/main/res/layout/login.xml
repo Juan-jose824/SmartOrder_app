@@ -87,16 +87,17 @@
         app:layout_constraintVertical_bias="0.134"
         app:layout_constraintWidth_percent="0.7" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
-        android:layout_width="0sp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:background="@drawable/btn01_bg"
         android:text="@string/logintext"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textFontWeight="500"
+        android:background="@drawable/btn01_bg"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

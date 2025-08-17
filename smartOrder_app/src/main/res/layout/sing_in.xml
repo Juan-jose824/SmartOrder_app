@@ -236,14 +236,15 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <!-- Button -->
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/singinbutton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
-                    android:background="@drawable/btn01_bg"
                     android:text="@string/singin"
                     android:textColor="#FFFFFF"
+                    android:background="@drawable/btn01_bg"
+                    app:backgroundTint="@null"
                     app:layout_constraintWidth_percent="0.7"
                     app:layout_constraintTop_toBottomOf="@id/password"
                     app:layout_constraintStart_toStartOf="parent"
