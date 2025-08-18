@@ -29,6 +29,10 @@
         </activity>
         <activity android:name=".Food">
         </activity>
+        <activity android:name=".Cart">
+        </activity>
+        <activity android:name=".Reservation">
+        </activity>
     </application>
 
 </manifest>

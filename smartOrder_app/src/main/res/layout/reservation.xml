@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingBottom="35dp"
         >
 
         <!-- Encabezado -->
@@ -78,7 +79,7 @@
                 android:id="@+id/recyclerSites"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/item_bg"
                 android:padding="8dp"
                 android:clipToPadding="false"
                 android:layout_marginTop="4dp"/>

@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.Text
@@ -16,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.smartorder_app.ui.theme.SmartOrderTheme
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import utils.InternalData
+import com.example.smartorder_app.utils.InternalData
 import androidx.fragment.app.Fragment
 import com.example.smartorder_app.utils.Cellphone
 import com.example.smartorder_app.utils.Name

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -139,4 +140,55 @@ class FoodAdapter(
     }
 
     override fun getItemCount(): Int = foodList.size
+}
+
+class CartAdapter(
+    private val cartList: MutableList<CartItem>,
+    private val onQuantityChange: () -> Unit
+) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+
+    inner class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val foodName: TextView = itemView.findViewById(R.id.foodName)
+        val foodPrice: TextView = itemView.findViewById(R.id.foodPrice)
+        val foodQuantity: TextView = itemView.findViewById(R.id.quantityText)
+        val foodImage: ImageView = itemView.findViewById(R.id.foodImage)
+        val btnIncrease: Button = itemView.findViewById(R.id.btnIncreaseCart)
+        val btnDecrease: Button = itemView.findViewById(R.id.btnDecreaseCart)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.cart_item, parent, false)
+        return CartViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
+        val item = cartList[position]
+        holder.foodName.text = item.food.name
+        holder.foodPrice.text = "$${item.getTotalPrice()}"
+        holder.foodQuantity.text = item.quantity.toString()
+
+        Glide.with(holder.itemView.context)
+            .load(item.food.images.firstOrNull() ?: R.drawable.no_image)
+            .into(holder.foodImage)
+
+        holder.btnIncrease.setOnClickListener {
+            item.quantity++
+            notifyItemChanged(position)
+            onQuantityChange()
+        }
+
+        holder.btnDecrease.setOnClickListener {
+            if (item.quantity > 1) {
+                item.quantity--
+                notifyItemChanged(position)
+            } else {
+                cartList.removeAt(position)
+                notifyItemRemoved(position)
+            }
+            onQuantityChange()
+        }
+    }
+
+    override fun getItemCount(): Int = cartList.size
 }

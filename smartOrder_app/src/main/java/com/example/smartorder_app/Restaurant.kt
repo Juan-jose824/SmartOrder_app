@@ -1,6 +1,7 @@
 package com.example.smartorder_app
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartorder_app.utils.Date
 import com.example.smartorder_app.utils.FoodAdapter
 import com.example.smartorder_app.utils.FoodData
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class Restaurant : ComponentActivity() {
 
@@ -31,7 +33,12 @@ class Restaurant : ComponentActivity() {
         val name = intent.getStringExtra("restaurant_name")
         val id = intent.getStringExtra("restaurant_id")
 
-        Log.i("Restaruate", "$name $id")
+        val btnCart: FloatingActionButton = findViewById(R.id.btnCart)
+
+        btnCart.setOnClickListener {
+            val intent = Intent(this, Cart::class.java)
+            startActivity(intent)
+        }
 
         // Ejemplo: mostrar el nombre en un TextView
         val titleView: TextView = findViewById(R.id.restaurant_name)
@@ -61,7 +68,7 @@ class Restaurant : ComponentActivity() {
         )
 
         adapter = FoodAdapter(sampleFoods) { food ->
-            Toast.makeText(this, "Seleccionaste ${food.name}", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Seleccionaste ${food.name}", Toast.LENGTH_SHORT).show()
         }
 
         recyclerView.adapter = adapter

@@ -67,3 +67,13 @@ data class Date (
     val date: String,
     val time: String
 )
+
+data class CartItem(
+    val food: FoodData,
+    var quantity: Int
+) {
+    fun getTotalPrice(): Double {
+        return food.price.toDouble() * quantity
+    }
+}
+

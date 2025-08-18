@@ -1,13 +1,11 @@
-package utils
+package com.example.smartorder_app.utils
 
 import android.content.Context
-import com.example.smartorder_app.utils.UserConfig
 import com.google.gson.Gson
 
 class InternalData(private val context: Context) {
     private val gson = Gson()
     private val fileName = "config.json"
-    private val cartFile = "cart.json"
 
     fun save(config: UserConfig) {
         val jsonString = gson.toJson(config)
@@ -25,4 +23,19 @@ class InternalData(private val context: Context) {
             null
         }
     }
+}
+
+object CartManager {
+    private val cartItems = mutableListOf<CartItem>()
+
+    fun addToCart(food: FoodData, quantity: Int = 1) {
+        val existing = cartItems.find { it.food.name == food.name }
+        if (existing != null) {
+            existing.quantity += quantity
+        } else {
+            cartItems.add(CartItem(food, quantity))
+        }
+    }
+
+    fun getCart(): MutableList<CartItem> = cartItems
 }
