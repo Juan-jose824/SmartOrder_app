@@ -15,4 +15,19 @@
     <string name="nombre_del_restaurante">Nombre del Restaurante</string>
     <string name="abierto">Abierto</string>
     <string name="men">Menú</string>
+    <string name="historial">Historial</string>
+    <string name="logoutText">Cerrar sesión</string>
+    <string name="gestionar_reservas">Gestionar reservas</string>
+    <string name="ir_al_carrito">Ir al carrito</string>
+    <string name="restaurante">Restaurante</string>
+    <string name="guardar_reservaci_n">Guardar Reservación</string>
+    <string name="solicitar_reservaci_n">Solicitar reservación</string>
+    <!-- res/values/strings.xml -->
+
+    <string-array name="theme_options">
+        <item>Claro</item>
+        <item>Oscuro</item>
+        <item>Predeterminado del sistema</item>
+    </string-array>
+
 </resources>

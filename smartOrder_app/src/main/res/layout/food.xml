@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/general_bg_dark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Imagen principal -->
+        <ImageView
+            android:id="@+id/foodImage"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_image" />
+
+        <!-- Info principal -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/foodName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre del alimento"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/text01" />
+
+            <TextView
+                android:id="@+id/foodPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="precio"
+                android:textSize="18sp"
+                android:textColor="@color/text02"
+                android:paddingVertical="5dp"/>
+
+            <!-- Descripción -->
+            <TextView
+                android:id="@+id/foodDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Descripcion del alimento"
+                android:textSize="18sp"
+                android:textColor="@color/text02" />
+        </LinearLayout>
+
+        <!-- Control de cantidad -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:background="@drawable/search_bg"
+            android:padding="8dp"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnDecrease"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-"
+                android:textSize="20sp"
+                android:textFontWeight="700"
+                android:background="@drawable/btn01_bg" />
+
+            <TextView
+                android:id="@+id/quantityText"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="18sp"
+                android:textColor="@color/text01" />
+
+            <Button
+                android:id="@+id/btnIncrease"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:textSize="20sp"
+                android:textFontWeight="700"
+                android:background="@drawable/btn01_bg" />
+        </LinearLayout>
+
+        <!-- Sección: suelen comprarse juntos -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suelen comprarse juntos"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_margin="16dp"
+            android:textColor="@color/text01"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommendedRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:visibility="invisible"/>
+
+        <!-- Botón agregar al pedido -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Añadir al carrito"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textFontWeight="500"
+            android:background="@drawable/btn01_bg" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/payButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Pagar"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textFontWeight="500"
+            android:background="@drawable/btn01_bg" />
+
+    </LinearLayout>
+</ScrollView>

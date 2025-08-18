@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/general_bg_dark"
+    android:orientation="vertical">
+
+    <!-- Contenido desplazable -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <!-- Encabezado -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="15dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/header_bg">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/logo"
+                    android:contentDescription="@string/app_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="SmartOrder"
+                    android:textColor="@color/text01"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Título y total -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:text="Carrito"
+                    android:textColor="@color/text01"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:text="Total: $0.00"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text01"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <!-- RecyclerView para los productos -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerCart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:padding="8dp"
+                android:clipToPadding="false" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Botón Pagar fijo abajo -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Proceder a la reserva"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@drawable/btn01_bg" />
+
+</LinearLayout>

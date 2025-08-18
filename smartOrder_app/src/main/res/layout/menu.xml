@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@drawable/general_bg_dark">
+    android:layout_height="match_parent">
+
+    <!-- Contenido scrolleable -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@drawable/general_bg_dark">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +20,7 @@
         <ImageView
             android:id="@+id/restaurant_image"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="180dp"
             android:scaleType="centerCrop"
             android:src="@drawable/no_image" />
 
@@ -78,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp">
+                android:paddingHorizontal="15dp">
 
                 <!-- Ejemplo de horario -->
                 <LinearLayout
@@ -86,20 +91,188 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginEnd="20dp"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:background="@drawable/schedule_item_bg"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lun"
+                        android:text="Domingo"
                         android:textStyle="bold"
                         android:textColor="@color/text01"/>
 
                     <TextView
+                        android:id="@+id/sundayTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="9:00 - 22:00"
-                        android:textColor="@color/text02"/>
+                        android:textColor="@color/text02"
+                        android:textSize="18sp"
+                        android:textFontWeight="500"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/schedule_item_bg"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lunes"
+                        android:textStyle="bold"
+                        android:textColor="@color/text01"/>
+
+                    <TextView
+                        android:id="@+id/mondayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9:00 - 22:00"
+                        android:textColor="@color/text02"
+                        android:textSize="18sp"
+                        android:textFontWeight="500"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/schedule_item_bg"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Martes"
+                        android:textStyle="bold"
+                        android:textColor="@color/text01"/>
+
+                    <TextView
+                        android:id="@+id/TuesdayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="cerrado"
+                        android:textColor="@color/text02"
+                        android:textSize="18sp"
+                        android:textFontWeight="500"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/schedule_item_bg"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Miercoles"
+                        android:textStyle="bold"
+                        android:textColor="@color/text01"/>
+
+                    <TextView
+                        android:id="@+id/wednesdayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="cerrado"
+                        android:textColor="@color/text02"
+                        android:textSize="18sp"
+                        android:textFontWeight="500"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/schedule_item_bg"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jueves"
+                        android:textStyle="bold"
+                        android:textColor="@color/text01"/>
+
+                    <TextView
+                        android:id="@+id/thursdayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9:00 - 22:00"
+                        android:textColor="@color/text02"
+                        android:textSize="18sp"
+                        android:textFontWeight="500"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/schedule_item_bg"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Viernes"
+                        android:textStyle="bold"
+                        android:textColor="@color/text01"/>
+
+                    <TextView
+                        android:id="@+id/fridayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9:00 - 22:00"
+                        android:textColor="@color/text02"
+                        android:textSize="18sp"
+                        android:textFontWeight="500"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/schedule_item_bg"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sabado"
+                        android:textStyle="bold"
+                        android:textColor="@color/text01"/>
+
+                    <TextView
+                        android:id="@+id/saturndayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9:00 - 22:00"
+                        android:textColor="@color/text02"
+                        android:textSize="18sp"
+                        android:textFontWeight="500"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -142,18 +315,68 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingHorizontal="16dp"
             android:text="@string/men"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/text01" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/foods_recycler"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            android:paddingBottom="20dp"/>
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Alimentos principales"
+                android:textColor="@color/text01"
+                android:textSize="24sp"
+                android:textFontWeight="700"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/foods_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Todos los alimentos"
+                android:textColor="@color/text01"
+                android:textSize="24sp"
+                android:textFontWeight="700"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/allFoods_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="20dp"/>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
+
+    <!-- Botón flotante estilo "ir al carrito" -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/shopping_cart"
+        app:tint="@color/text01"
+        android:contentDescription="@string/ir_al_carrito"/>
+
+</FrameLayout>

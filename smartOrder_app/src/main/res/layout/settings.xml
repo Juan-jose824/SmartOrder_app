@@ -1,64 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/general_bg_dark">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <!-- Nombre del restaurante -->
-        <TextView
-            android:id="@+id/tvRestaurantName"
+        <!-- Encabezado -->
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre del Restaurante"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:padding="8dp" />
+            android:paddingHorizontal="16dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="15dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/header_bg">
 
-        <!-- Lista de items del carrito -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewCart"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingTop="8dp"/>
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/logo"
+                android:contentDescription="@string/app_name" />
 
-        <!-- Total -->
-        <TextView
-            android:id="@+id/tvTotal"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="SmartOrder"
+                android:textColor="@color/text01"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <!-- ================= APP ================= -->
+        <LinearLayout
+            android:id="@+id/layoutApp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Total: $0.00"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:divider="?android:attr/dividerHorizontal"
+            android:padding="16dp"
+            android:showDividers="middle">
 
-        <!-- Sección inferior con total y botón pagar -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aplicación"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="12dp"
+                android:textColor="@color/text01"
+                android:paddingBottom="8dp"/>
+
+            <!-- Tema -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tema"
+                    android:textSize="16sp"
+                    android:textColor="@color/text02"/>
+
+                <Spinner
+                    android:id="@+id/spinnerTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/theme_options"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <!-- ================= CLIENTE ================= -->
+        <LinearLayout
+            android:id="@+id/layoutCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cliente"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/text01"/>
+
+            <Switch
+                android:id="@+id/switchReservaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Permitir reservaciones"
+                android:textColor="@color/text02"/>
+
+            <Switch
+                android:id="@+id/switchHorario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mostrar horario"
+                android:textColor="@color/text02"/>
+
+            <Switch
+                android:id="@+id/switchDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mostrar descripción"
+                android:textColor="@color/text02"/>
+        </LinearLayout>
+
+
+        <!-- ================= EMPLEADO ================= -->
+        <LinearLayout
+            android:id="@+id/layoutEmpleado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Empleado"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/text01"/>
+
+            <Switch
+                android:id="@+id/switchNotificaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recibir notificaciones de pedidos"
+                android:textColor="@color/text02"/>
+
+            <Switch
+                android:id="@+id/switchAlertas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recibir alertas"
+                android:textColor="@color/text02"/>
+
+            <Switch
+                android:id="@+id/switchLocal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Solo mostrar restaurante local"
+                android:textColor="@color/text02"/>
+        </LinearLayout>
+
+
+        <!-- ================= ADMINISTRADOR ================= -->
+        <LinearLayout
+            android:id="@+id/layoutAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Administrador"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/text01"/>
+
+            <Switch
+                android:id="@+id/switchReportes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mostrar reportes"
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <Switch
+                android:id="@+id/switchGraficas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mostrar gráficas"
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <Switch
+                android:id="@+id/switchUsuarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gestionar usuarios"
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <Switch
+                android:id="@+id/switchAlimentos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gestionar alimentos"
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <Switch
+                android:id="@+id/switchLugares"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gestionar lugares"
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <Switch
+                android:id="@+id/switchReservas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gestionar_reservas"
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </LinearLayout>
+
+        <!-- Cerrar sesión -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="8dp">
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="20dp">
 
-            <!-- Botón de pagar -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPay"
+                android:id="@+id/logoutButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Continuar con reserva"
-                app:backgroundTint="@null"
-                android:background="@drawable/btn01_bg"/>
-
+                android:layout_marginTop="16dp"
+                android:text="@string/logoutText"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textFontWeight="500"
+                android:background="@drawable/btn01_bg" />
         </LinearLayout>
-
     </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

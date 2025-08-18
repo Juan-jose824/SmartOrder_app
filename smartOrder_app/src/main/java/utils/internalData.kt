@@ -7,6 +7,7 @@ import com.google.gson.Gson
 class InternalData(private val context: Context) {
     private val gson = Gson()
     private val fileName = "config.json"
+    private val cartFile = "cart.json"
 
     fun save(config: UserConfig) {
         val jsonString = gson.toJson(config)

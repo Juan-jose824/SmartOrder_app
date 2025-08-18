@@ -47,21 +47,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Barra de búsqueda -->
-            <EditText
-                android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:hint="Buscar restaurantes..."
-                android:padding="12dp"
-                android:background="@drawable/search_bg"
-                android:drawableStart="@android:drawable/ic_menu_search"
-                android:drawablePadding="8dp"
-                android:textColor="@color/text01"
-                android:textColorHint="@color/text02"
-                android:textSize="20sp" />
-
             <!-- Restaurantes recomendados (HorizontalScrollView o RecyclerView horizontal) -->
             <TextView
                 android:layout_width="wrap_content"

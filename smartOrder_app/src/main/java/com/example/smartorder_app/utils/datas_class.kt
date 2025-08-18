@@ -40,14 +40,30 @@ data class RestaurantData(
     val foods: List<String>
 )
 
-class ContactRestaurant (
+data class ContactRestaurant (
     val email: String,
     val countryCode: String,
     val number: String
 )
 
-class WorkingDays (
+data class WorkingDays (
     val day: String,
     val open: String,
     val close: String,
+)
+
+data class FoodData (
+    val name: String,
+    val restaurant: String,
+    val description: String,
+    val price: Number,
+    val sales: Number,
+    val category: String,
+    val images: List<String>,
+    val date: Date
+)
+
+data class Date (
+    val date: String,
+    val time: String
 )

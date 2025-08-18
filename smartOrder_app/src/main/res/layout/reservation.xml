@@ -1,0 +1,247 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/general_bg_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <!-- Encabezado -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="15dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/header_bg">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/logo"
+                android:contentDescription="@string/app_name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="SmartOrder"
+                android:textColor="@color/text01"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp">
+
+            <!-- Restaurante -->
+            <TextView
+                android:id="@+id/etRestaurant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/restaurante"
+                android:textSize="24sp"
+                android:paddingTop="12dp"
+                android:textFontWeight="700"
+                android:textColor="@color/text01" />
+
+            <!-- Cliente -->
+            <TextView
+                android:id="@+id/etCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cliente:  Algo "
+                android:textSize="18sp"
+                android:paddingVertical="5dp"
+                android:textColor="@color/text01" />
+
+            <!-- RecyclerView para sitios -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lugar"
+                android:textColor="@color/text01"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerSites"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/edittext_bg"
+                android:padding="8dp"
+                android:clipToPadding="false"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Número de personas -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de personas"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/text01"
+                android:textSize="18sp"
+                />
+
+            <EditText
+                android:id="@+id/etPeople"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="1"
+                android:inputType="number"
+                android:padding="12dp"
+                android:background="@drawable/input_border"
+                android:textColor="@color/text01"
+                android:textColorHint="@color/text02"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Fecha (DatePicker) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha"
+                android:textColor="@color/text01"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp"/>
+
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="true"
+                android:spinnersShown="false"
+                android:layout_marginTop="4dp"
+                android:calendarTextColor="@color/text01"
+                android:outlineAmbientShadowColor="#000000"/>
+
+            <!-- Hora (TimePicker) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora"
+                android:textColor="@color/text01"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp"/>
+
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"
+                android:layout_marginTop="4dp"
+                android:numbersInnerTextColor="@color/text02"
+                android:numbersTextColor="@color/text01"/>
+
+            <!-- Precio -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:layout_marginTop="15sp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SubTotal:"
+                    android:textColor="@color/text01"
+                    android:textSize="20sp"
+                    android:textFontWeight="400"
+                    />
+
+                <TextView
+                    android:id="@+id/subtotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="$0.00"
+                    android:textColor="@color/text01"
+                    android:textSize="20dp"
+                    android:textFontWeight="400"
+                    android:textAlignment="textEnd"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:layout_marginTop="5sp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Coste reservación:"
+                    android:textColor="@color/text01"
+                    android:textSize="20sp"
+                    android:textFontWeight="400"
+                    />
+
+                <TextView
+                    android:id="@+id/priceReservation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="$0.00"
+                    android:textColor="@color/text01"
+                    android:textSize="20dp"
+                    android:textFontWeight="400"
+                    android:textAlignment="textEnd"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:layout_marginTop="5sp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total:"
+                    android:textColor="@color/text01"
+                    android:textSize="24sp"
+                    android:textFontWeight="400"
+                    />
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="$0.00"
+                    android:textColor="@color/text01"
+                    android:textSize="24dp"
+                    android:textFontWeight="400"
+                    android:textAlignment="textEnd"
+                    />
+            </LinearLayout>
+
+            <!-- Botón Guardar -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/solicitar_reservaci_n"
+                android:textAllCaps="false"
+                android:textColor="@color/text01"
+                android:background="@drawable/btn01_bg"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+

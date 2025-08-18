@@ -50,11 +50,11 @@ class MainActivity : AppCompatActivity() {
                         true
                     }
                     R.id.nav_opciones -> {
-                        // TODO: Acción para Opciones
+                        replaceFragment(History_Fragment())
                         true
                     }
                     R.id.nav_configuracion -> {
-                        // TODO: Acción para Configuración
+                        replaceFragment(Settings_Fragment())
                         true
                     }
                     R.id.nav_perfil -> {
