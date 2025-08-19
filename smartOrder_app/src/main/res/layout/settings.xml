@@ -108,21 +108,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Permitir reservaciones"
-                android:textColor="@color/text02"/>
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Switch
                 android:id="@+id/switchHorario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mostrar horario"
-                android:textColor="@color/text02"/>
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Switch
                 android:id="@+id/switchDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mostrar descripción"
-                android:textColor="@color/text02"/>
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
         </LinearLayout>
 
 
@@ -149,21 +152,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Recibir notificaciones de pedidos"
-                android:textColor="@color/text02"/>
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Switch
                 android:id="@+id/switchAlertas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Recibir alertas"
-                android:textColor="@color/text02"/>
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Switch
                 android:id="@+id/switchLocal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Solo mostrar restaurante local"
-                android:textColor="@color/text02"/>
+                android:textColor="@color/text02"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
         </LinearLayout>
 
 

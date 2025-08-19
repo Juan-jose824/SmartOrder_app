@@ -75,14 +75,16 @@
                 android:textSize="18sp"
                 android:layout_marginTop="12dp"/>
 
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerSites"
+                android:id="@+id/recyclerCart"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@drawable/item_bg"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
                 android:padding="8dp"
                 android:clipToPadding="false"
-                android:layout_marginTop="4dp"/>
+                app:layoutManager="LinearLayoutManager"
+                android:orientation="horizontal"/>
 
             <!-- Número de personas -->
             <TextView

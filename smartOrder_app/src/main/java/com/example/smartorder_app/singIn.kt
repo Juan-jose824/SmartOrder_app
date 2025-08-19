@@ -7,10 +7,14 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ScrollView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.smartorder_app.Services.singIn
+import com.example.smartorder_app.utils.Cellphone
+import com.example.smartorder_app.utils.Name
 
 class SinIn : ComponentActivity() {
 
@@ -47,15 +51,32 @@ class SinIn : ComponentActivity() {
         ViewCompat.requestApplyInsets(scrollView)
 
         singIn.setOnClickListener {
-            var name = nameInput.text.toString().trim()
-            var fathername = fathernameInput.text.toString().trim()
-            var mothername = mothernameInput.text.toString().trim()
-            var email = emailInput.text.toString().trim()
-            var cellphone = cellphoneInput.text.toString().trim()
-            var password = passwordInput.text.toString().trim()
-            val rol = 5
+            val name = nameInput.text.toString().trim()
+            val fatherName = fathernameInput.text.toString().trim()
+            val motherName = mothernameInput.text.toString().trim()
+            val email = emailInput.text.toString().trim()
+            val cellphone = cellphoneInput.text.toString().trim()
+            val password = passwordInput.text.toString().trim()
+            val role = 5
 
-            Log.i("Registro", "$name $fathername $mothername $email")
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Complete los campos requeridos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val nameObj = Name(name, fatherName, motherName)
+            val cellObj = Cellphone("+52", cellphone)
+
+            singIn(nameObj, cellObj, email, password, role) { success, message ->
+                runOnUiThread {
+                    if (success) {
+                        Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                        finish() // cerrar actividad y volver al login
+                    } else {
+                        Toast.makeText(this, "Error: ${message ?: "Intente nuevamente"}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 }

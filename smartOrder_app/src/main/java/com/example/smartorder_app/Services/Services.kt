@@ -22,15 +22,22 @@ fun singIn(
     cellphone: Cellphone,
     email: String,
     password: String,
+    role: Int,
     onResult: (Boolean, String?) -> Unit // callback con resultado y mensaje
 ) {
+    val nameJson = JSONObject().apply {
+        put("name", name.name)
+        put("paternal_surname", name.fatherName)
+        put("maternal_surname", name.motherName)
+    }
 
-
-    val json = JSONObject()
-    json.put("name", name)
-    json.put("cellphone", cellphone)
-    json.put("email", email)
-    json.put("password", password)
+    val json = JSONObject().apply {
+        put("name", nameJson)
+        put("cellphone", cellphone.number)
+        put("email", email)
+        put("password", password)
+        put("role", role)
+    }
 
     //name, cellphone, password, email, role
     val request = Request.Builder()
@@ -98,9 +105,9 @@ fun login(
                     val data = jsonResponse.optString("data")
                     //Log.d("Resultado", data.toString())
 
-                    onResult(true, data)
+                    onResult(response.isSuccessful, responseBody)
                 } catch (e: Exception) {
-                    //Log.e("error", response.toString())
+                    Log.e("error", response.toString())
                     onResult(false, null)
                 }
             } else {
@@ -135,8 +142,8 @@ fun getAllRestaurants(
             if (response.isSuccessful && responseBody != null) {
                 try {
                     val jsonResponse = JSONObject(responseBody)
-                    val data = jsonResponse.optString("data")
-                    onResult(true, data)
+                    val data = jsonResponse.optJSONArray("data")
+                    onResult(true, data.toString())
                 } catch (e: Exception) {
                     onResult(false, null)
                 }
@@ -170,8 +177,8 @@ fun getRestaurant(
             if (response.isSuccessful && responseBody != null) {
                 try {
                     val jsonResponse = JSONObject(responseBody)
-                    val data = jsonResponse.optString("data")
-                    onResult(true, data)
+
+                    onResult(true, responseBody)
                 } catch (e: Exception) {
                     onResult(false, null)
                 }

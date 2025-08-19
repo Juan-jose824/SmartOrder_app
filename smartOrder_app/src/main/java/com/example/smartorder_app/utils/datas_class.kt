@@ -31,7 +31,7 @@ data class RestaurantData(
     val images: List<String>,
     val WorkingDays: List<WorkingDays>,
     val rating: Float,
-    val isFavorite: Boolean,
+    var isFavorite: Boolean,
     val category: List<String>,
     val maxCapacity: Int,
     val currentCapacity: Int,
@@ -77,3 +77,30 @@ data class CartItem(
     }
 }
 
+data class PlaceData(
+    val id: String,
+    val restaurant: String,
+    val name: String,
+    val description: String,
+    val images: List<String>,
+    val status: String
+)
+
+data class AppConfig (
+    val user: String,
+    val theme: String = "Dark",
+    val reservations: Boolean = true,
+    val publicWorkTime: Boolean = true,
+    val publicContact: Boolean = true,
+    val publicDescription: Boolean = true,
+    val notifications: Boolean = true,
+    val alerts: Boolean = true,
+    val onlyRestaurant: Boolean = false,
+    val reports: Boolean = false,
+    val grafics: Boolean = false,
+    val adminUsers: Boolean = false,
+    val adminFoods: Boolean = false,
+    val adminCategories: Boolean = false,
+    val adminPlaces: Boolean = false,
+    val adminReservations: Boolean = false,
+)

@@ -1,6 +1,7 @@
 package com.example.smartorder_app
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -30,6 +31,7 @@ class Food : ComponentActivity() {
         val btnIncrease = findViewById<Button>(R.id.btnIncrease)
         val btnDecrease = findViewById<Button>(R.id.btnDecrease)
         val addButton = findViewById<com.google.android.material.button.MaterialButton>(R.id.addButton)
+        val btnCart: Button = findViewById(R.id.payButton)
 
         // Recibir datos del intent
         val name = intent.getStringExtra("food_name") ?: ""
@@ -68,6 +70,11 @@ class Food : ComponentActivity() {
                 quantity--
                 quantityText.text = quantity.toString()
             }
+        }
+
+        btnCart.setOnClickListener {
+            val intent = Intent(this, Cart::class.java)
+            startActivity(intent)
         }
 
         // Botón Añadir al carrito

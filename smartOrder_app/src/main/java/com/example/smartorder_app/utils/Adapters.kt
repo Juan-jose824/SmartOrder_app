@@ -1,10 +1,12 @@
 package com.example.smartorder_app.utils
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,6 +18,7 @@ import com.example.smartorder_app.Food
 import com.example.smartorder_app.MainActivity
 import com.example.smartorder_app.R
 import com.example.smartorder_app.Restaurant
+import androidx.core.content.edit
 
 class RestaurantAdapter(
     private val restaurants: List<RestaurantData>,
@@ -65,7 +68,21 @@ class RestaurantAdapter(
                 if (restaurant.isFavorite) R.drawable.heart else R.drawable.favorite
             )
 
-            favIcon.setOnClickListener { onFavoriteClick(restaurant) }
+            favIcon.setOnClickListener {
+                restaurant.isFavorite = !restaurant.isFavorite
+                favIcon.setImageResource(
+                    if (restaurant.isFavorite) R.drawable.heart else R.drawable.favorite
+                )
+                onFavoriteClick(restaurant)
+            }
+
+            image.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, Restaurant::class.java)
+                intent.putExtra("restaurant_name", restaurant.name) // ejemplo: pasar el nombre
+                intent.putExtra("restaurant_id", restaurant.id)     // si tienes un id
+                context.startActivity(intent)
+            }
 
             name.setOnClickListener {
                 val context = itemView.context
@@ -92,7 +109,7 @@ class RestaurantAdapter(
 
 class FoodAdapter(
     private val foodList: List<FoodData>,
-    private val onItemClick: (FoodData) -> Unit
+    //private val onItemClick: (FoodData) -> Unit
 ) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
 
     inner class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -118,7 +135,7 @@ class FoodAdapter(
 
             // Click en toda la card
             itemView.setOnClickListener {
-                onItemClick(food)
+                //onItemClick(food)
                 val context = itemView.context
                 val intent = Intent(context, Food::class.java)
                 intent.putExtra("food_name", food.name) // ejemplo: pasar el nombre
@@ -192,3 +209,49 @@ class CartAdapter(
 
     override fun getItemCount(): Int = cartList.size
 }
+
+class PlaceAdapter(
+    private val places: List<PlaceData>,
+    private val onItemChecked: (PlaceData, Boolean) -> Unit
+) : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
+
+    inner class PlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val placeName: TextView = itemView.findViewById(R.id.placeName)
+        val placeDescription: TextView = itemView.findViewById(R.id.placeDescription)
+        val placeImage: ImageView = itemView.findViewById(R.id.placeImage)
+        val placeCheckBox: CheckBox = itemView.findViewById(R.id.placeCheckBox)
+        val placeState: TextView = itemView.findViewById(R.id.status)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_place, parent, false)
+        return PlaceViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
+        val place = places[position]
+
+        holder.placeName.text = place.name
+        holder.placeDescription.text = place.description
+        holder.placeState.text = place.status
+
+        // cargar primera imagen si existe
+        if (place.images.isNotEmpty()) {
+            Glide.with(holder.itemView.context)
+                .load(place.images[0])
+                .placeholder(R.drawable.no_image)
+                .into(holder.placeImage)
+        } else {
+            holder.placeImage.setImageResource(R.drawable.no_image)
+        }
+
+        // checkbox listener
+        holder.placeCheckBox.setOnCheckedChangeListener { _, isChecked ->
+            onItemChecked(place, isChecked)
+        }
+    }
+
+    override fun getItemCount() = places.size
+}
+
