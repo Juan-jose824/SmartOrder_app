@@ -58,14 +58,27 @@ data class FoodData (
     val description: String,
     val price: Number,
     val sales: Number,
-    val category: String,
+    val category: List<String>,
     val images: List<String>,
-    val date: Date
+    val date: Date,
 )
 
 data class Date (
     val date: String,
     val time: String
+)
+
+data class FoodDetails (
+    val name: String,
+    val restaurant: String,
+    val prices: PricesData,
+    val color: String,
+    val details: String
+)
+
+data class PricesData (
+    val price: Number,
+    val date: String
 )
 
 data class CartItem(
@@ -103,4 +116,28 @@ data class AppConfig (
     val adminCategories: Boolean = false,
     val adminPlaces: Boolean = false,
     val adminReservations: Boolean = false,
+)
+
+data class ReservationData (
+    val restaurant: String,
+    val customer: String,
+    val site: String,
+    val people: Number,
+    val items: List<ReservationItem>,
+    val status: String,
+    val time: Time,
+    val date: Date,
+    val price: Number,
+    val totalPrice: Number
+)
+
+data class Time (
+    val day: String,
+    val time: String,
+)
+
+data class ReservationItem(
+    val food: String,
+    val quantity: Int,
+    val price: Double
 )

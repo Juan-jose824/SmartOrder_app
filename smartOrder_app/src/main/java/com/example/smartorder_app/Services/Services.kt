@@ -247,9 +247,7 @@ fun getFood(
             val responseBody = response.body?.string()
             if (response.isSuccessful && responseBody != null) {
                 try {
-                    val jsonResponse = JSONObject(responseBody)
-                    val data = jsonResponse.optString("data")
-                    onResult(true, data)
+                    onResult(true, responseBody)
                 } catch (e: Exception) {
                     onResult(false, null)
                 }

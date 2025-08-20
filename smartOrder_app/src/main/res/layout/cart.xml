@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/general_bg_dark"
@@ -57,19 +58,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
-                    android:text="Carrito"
+                    android:text="@string/mi_carrito"
                     android:textColor="@color/text01"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/subTotal"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="10dp"
-                    android:text="Subtotal: $0.00"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/text01"
-                    android:textSize="24sp" />
+                    android:orientation="horizontal"
+                    android:gravity="end|center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="10dp"
+                        android:text="Subtotal:"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/text01"
+                        android:textSize="20sp"
+                        android:textFontWeight="700"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/subTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="10dp"
+                        android:text="@string/_0_00"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        android:layout_marginLeft="8dp"/>
+                </LinearLayout>
             </LinearLayout>
 
             <!-- RecyclerView para los productos -->
@@ -89,12 +109,14 @@
         android:id="@+id/btnPay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Proceder a la reserva"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="35dp"
+        android:text="@string/proceder_a_la_reserva"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:background="@drawable/btn01_bg" />
+        android:background="@drawable/btn01_bg"
+        android:backgroundTint="@color/mainColor"/>
 
 </LinearLayout>

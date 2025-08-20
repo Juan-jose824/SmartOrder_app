@@ -1,5 +1,6 @@
 package com.example.smartorder_app.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -167,6 +168,7 @@ class CartAdapter(
     inner class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val foodName: TextView = itemView.findViewById(R.id.foodName)
         val foodPrice: TextView = itemView.findViewById(R.id.foodPrice)
+        val foodDescription: TextView = itemView.findViewById(R.id.foodDescription)
         val foodQuantity: TextView = itemView.findViewById(R.id.quantityText)
         val foodImage: ImageView = itemView.findViewById(R.id.foodImage)
         val btnIncrease: Button = itemView.findViewById(R.id.btnIncreaseCart)
@@ -179,10 +181,12 @@ class CartAdapter(
         return CartViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val item = cartList[position]
         holder.foodName.text = item.food.name
-        holder.foodPrice.text = "$${item.getTotalPrice()}"
+        holder.foodDescription.text = item.food.description
+        holder.foodPrice.text = "$${item.getTotalPrice()}   ($${item.food.price} × ${item.quantity.toString()})"
         holder.foodQuantity.text = item.quantity.toString()
 
         Glide.with(holder.itemView.context)

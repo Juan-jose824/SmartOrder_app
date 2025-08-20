@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartorder_app.utils.CartAdapter
+import com.example.smartorder_app.utils.CartItem
 import com.example.smartorder_app.utils.CartManager
 import com.example.smartorder_app.utils.FoodAdapter
 
@@ -44,6 +45,7 @@ class Cart : AppCompatActivity() {
 
         val subtotal: TextView = findViewById(R.id.subTotal)
 
+
         val btnNext: Button = findViewById(R.id.btnPay)
 
         btnNext.setOnClickListener {
@@ -52,8 +54,11 @@ class Cart : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateTotal() {
         val total = CartManager.getCart().sumOf { it.getTotalPrice() }
-        Toast.makeText(this, "Total: $$total", Toast.LENGTH_SHORT).show()
+        val subtotal: TextView = findViewById(R.id.subTotal)
+
+        subtotal.text = "$${"%.2f".format(total)}"
     }
 }

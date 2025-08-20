@@ -2,6 +2,7 @@ package com.example.smartorder_app.utils
 
 import android.content.Context
 import androidx.core.content.edit
+import com.example.smartorder_app.Restaurant
 import com.google.gson.Gson
 
 object PrefsManager {
@@ -80,7 +81,6 @@ object PrefsManager {
     }
 }
 
-
 object CartManager {
     private val cartItems = mutableListOf<CartItem>()
 
@@ -94,4 +94,37 @@ object CartManager {
     }
 
     fun getCart(): MutableList<CartItem> = cartItems
+}
+
+object ReservationManager {
+    private var reservationData: ReservationData? = null
+
+    fun newReservation(
+        data: ReservationData,
+        restaurant: RestaurantData,
+        items: MutableList<CartItem> = CartManager.getCart()
+    ) {
+        // Convertir el carrito a ReservationItem
+        val reservationItems = items.map {
+            ReservationItem(
+                food = it.food.name,
+                quantity = it.quantity,
+                price = it.food.price.toDouble()
+            )
+        }
+
+        // Calcular total
+        val subtotalPrice = reservationItems.sumOf { it.price * it.quantity }
+
+        val totalPrice = subtotalPrice + data.price.toDouble()
+
+        // Crear la reserva final
+        reservationData = data.copy(
+            restaurant = restaurant.id,
+            items = reservationItems,
+            totalPrice = totalPrice
+        )
+    }
+
+    fun getReservation(): ReservationData? = reservationData
 }

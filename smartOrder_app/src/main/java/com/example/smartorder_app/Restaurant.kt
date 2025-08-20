@@ -12,11 +12,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartorder_app.Services.getRestaurant
+import com.example.smartorder_app.Services.getRestaurantFoods
 import com.example.smartorder_app.utils.Date
 import com.example.smartorder_app.utils.FoodAdapter
 import com.example.smartorder_app.utils.FoodData
 import com.example.smartorder_app.utils.WorkingDays
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.json.JSONArray
 import org.json.JSONObject
 
 class Restaurant : ComponentActivity() {
@@ -27,7 +29,7 @@ class Restaurant : ComponentActivity() {
 
     private var isFavorite: Boolean = false
 
-    @SuppressLint("MissingInflatedId", "NotifyDataSetChanged")
+    @SuppressLint("MissingInflatedId", "NotifyDataSetChanged", "CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -38,7 +40,7 @@ class Restaurant : ComponentActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val name = intent.getStringExtra("restaurant_name")
-        val id = intent.getStringExtra("restaurant_id")
+        val restaurantID = intent.getStringExtra("restaurant_id")
         val favIcon: ImageView = findViewById(R.id.fav_icon)
 
         val btnCart: FloatingActionButton = findViewById(R.id.btnCart)
@@ -66,33 +68,71 @@ class Restaurant : ComponentActivity() {
         val titleView: TextView = findViewById(R.id.restaurant_name)
         titleView.text = name ?: "Restaurante"
 
-        val sampleFoods = listOf(
-            FoodData(
-                name = "Docena Variada",
-                restaurant = "Krispy Kreme",
-                description = "Elige tus sabores de Donas preferidos. La Docena perfecta para compartir.",
-                price = 420,
-                sales = 85,
-                category = "Postres",
-                images = listOf("https://cdn.ubereats.com/donas.jpg"),
-                date = Date("2025-08-18", "16:00")
-            ),
-            FoodData(
-                name = "Krispy Bites",
-                restaurant = "Krispy Kreme",
-                description = "Bocaditos con el inigualable sabor a Dona Glaseada Original®",
-                price = 90,
-                sales = 92,
-                category = "Snacks",
-                images = listOf("https://cdn.ubereats.com/bites.jpg"),
-                date = Date("2025-08-18", "16:10")
-            )
-        )
-        adapter = FoodAdapter(sampleFoods)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        recyclerView.adapter = adapter
+        getRestaurantFoods(restaurantID.toString()) { success, data ->
+            if (success && data != null) {
+                try {
+                    val jsonArray = JSONArray(data)
+                    val loadedFoods = mutableListOf<FoodData>()
 
-        id?.let { restaurantId ->
+                    for (i in 0 until jsonArray.length()) {
+                        val item = jsonArray.getJSONObject(i)
+
+                        // Objeto anidado "date"
+                        val dateObj = item.optJSONObject("date")
+
+                        // Array "category"
+                        val categories = mutableListOf<String>()
+                        val categoriesArray = item.optJSONArray("category")
+                        if (categoriesArray != null) {
+                            for (j in 0 until categoriesArray.length()) {
+                                categories.add(categoriesArray.optString(j))
+                            }
+                        }
+
+                        // Array "images"
+                        val images = mutableListOf<String>()
+                        val imagesArray = item.optJSONArray("images")
+                        if (imagesArray != null) {
+                            for (j in 0 until imagesArray.length()) {
+                                images.add(imagesArray.optString(j))
+                            }
+                        }
+
+                        val food = FoodData(
+                            name = item.optString("name"),
+                            restaurant = item.optString("restaurant"),
+                            description = item.optString("description"),
+                            price = item.optDouble("price"),
+                            sales = item.optInt("sales"),
+                            category = categories,
+                            images = images,
+                            date = Date(
+                                dateObj?.optString("date") ?: "",
+                                dateObj?.optString("time") ?: ""
+                            )
+                        )
+                        loadedFoods.add(food)
+                    }
+
+                    // Actualizar el RecyclerView en el hilo principal
+                    runOnUiThread {
+                        adapter = FoodAdapter(loadedFoods)
+                        recyclerView.adapter = adapter
+                        Toast.makeText(this, "Alimentos cargados", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    Log.e("Restaurant", "Error parseando foods: ${e.message}")
+                }
+            } else {
+                runOnUiThread {
+                    Toast.makeText(this, "Error cargando alimentos", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        restaurantID?.let { restaurantId ->
             getRestaurant(restaurantId) { success, data ->
                 if (success && data != null) {
                     try {
