@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.fragment)
     implementation(libs.constraintlayout)
     implementation(libs.material)
+    implementation(libs.play.services.wearable)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

@@ -5,7 +5,9 @@
 
 package com.example.smartorder.wearos
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -31,11 +33,14 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
 
-        setTheme(android.R.style.Theme_DeviceDefault)
+        setContentView(R.layout.main)
 
-        setContent {
-            WearApp("Android")
+        val profile : ImageButton = findViewById(R.id.btn_perfil)
+
+        profile.setOnClickListener {
+            startActivity(Intent(this, Profile::class.java))
         }
+
     }
 }
 

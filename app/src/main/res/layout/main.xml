@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!-- Borde circular simulando brújula/giroscopio -->
+    <ImageView
+        android:id="@+id/gyro_border"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/circle_border"
+        android:scaleType="fitXY"
+        android:alpha="0.6" />
+
+    <!-- Contenido centrado -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tv_pedido_activo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pedido activo"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <!-- Pedido -->
+        <TextView
+            android:id="@+id/tv_pedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pedido ejemplo #21314"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginTop="6dp" />
+
+        <!-- Botones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:paddingHorizontal="10dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btnHistory"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/bg_circle_button"
+                android:backgroundTint="@null"
+                android:contentDescription="Historial de pedidos"
+                android:src="@drawable/history"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/history"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Pulse"
+                app:layout_constraintVertical_bias="0.380"/>
+
+            <ImageButton
+                android:id="@+id/btnUserState"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_circle_button"
+                android:backgroundTint="@null"
+                android:contentDescription="Historial de pedidos"
+                android:src="@drawable/check_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/history"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Pulse"
+                app:layout_constraintVertical_bias="0.380"/>
+
+            <ImageButton
+                android:id="@+id/btn_perfil"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/bg_circle_button"
+                android:backgroundTint="@null"
+                android:contentDescription="Perfil del usuario"
+                android:src="@drawable/account_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/history"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Pulse"
+                app:layout_constraintVertical_bias="0.380"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.wear.widget.BoxInsetLayout>
