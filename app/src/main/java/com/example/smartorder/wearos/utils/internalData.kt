@@ -1,36 +1,42 @@
 package com.example.smartorder.wearos.utils
 
 import android.content.Context
+import android.util.Log
 import androidx.core.content.edit
 
 object PrefsManager {
     private const val PREFS_NAME = "smartorder_prefs"
 
     fun saveUser(context: Context, user: UserConfig) {
-        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit {
             putString("userEmail", user.email)
-            putString("userName", user.name.name)
-            putString("userMiddleName", user.name.fatherName)
-            putString("userLastName", user.name.motherName)
+            putString("name", user.name.name)
+            putString("paternal", user.name.fatherName)
+            putString("maternal", user.name.motherName)
+            putString("CountryCode", user.cellphone.countryCode)
             putString("userCellphone", user.cellphone.number)
-            putBoolean("isLoggedIn", true)
+            putString("role", user.role)
+            putString("token", user.token)
+            putBoolean("isLoggedIn", user.isLoggedIn)
         }
+        Log.i("SISSSSSSS", prefs.toString())
     }
 
     fun loadUser(context: Context): UserConfig? {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val email = prefs.getString("userEmail", null)
-        if (email == null) return null
+        val email = prefs.getString("userEmail", null) ?: return null
         return UserConfig(
             Name(
-                prefs.getString("userName", "") ?: "",
-                "",
-                ""
+                prefs.getString("name", "") ?: "",
+                prefs.getString("paternal", "") ?: "",
+                prefs.getString("maternal", "") ?: ""
             ),
             email,
-            Cellphone("", prefs.getString("userCellphone", "") ?: ""),
-            "1",
-            "12345",
+            Cellphone(prefs.getString("CountryCode", "") ?: "",
+                prefs.getString("userCellphone", "") ?: ""),
+            prefs.getString("role", "") ?: "5",
+            prefs.getString("token", "") ?: "",
             prefs.getBoolean("isLoggedIn", false)
         )
     }

@@ -7,9 +7,10 @@ package com.example.smartorder.wearos
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -27,20 +28,102 @@ import androidx.wear.compose.material.TimeText
 import androidx.wear.tooling.preview.devices.WearDevices
 import com.example.smartorder.R
 import com.example.smartorder.wearos.theme.SmartOrderTheme
+import com.example.smartorder.wearos.utils.Cellphone
+import com.example.smartorder.wearos.utils.Name
+import com.example.smartorder.wearos.utils.PrefsManager
+import com.example.smartorder.wearos.utils.UserConfig
+import com.google.android.gms.wearable.DataClient
+import com.google.android.gms.wearable.DataEventBuffer
+import com.google.android.gms.wearable.MessageClient
+import com.google.android.gms.wearable.MessageEvent
+import com.google.android.gms.wearable.Wearable
+import com.google.android.gms.wearable.DataEvent
+import com.google.android.gms.wearable.DataMapItem
 
-class MainActivity : ComponentActivity() {
+
+class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListener, DataClient.OnDataChangedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.main)
 
+        // Registrar listeners en tiempo de ejecución
+        Wearable.getMessageClient(this).addListener(this)
+        Wearable.getDataClient(this).addListener(this)
+
         val profile : ImageButton = findViewById(R.id.btn_perfil)
+        val userState: ImageButton = findViewById(R.id.btnUserState)
 
         profile.setOnClickListener {
             startActivity(Intent(this, Profile::class.java))
         }
 
+        userState.setOnClickListener {
+            startActivity(Intent(this, UserState::class.java))
+        }
+    }
+
+    override fun onMessageReceived(messageEvent: MessageEvent) {
+        Log.d("Wear", "Mensaje recibido: ${messageEvent.path}")
+
+        if (messageEvent.path == "/path/message") {
+            val msg = String(messageEvent.data)
+            runOnUiThread {
+                Toast.makeText(this, "Recibido: $msg", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onDataChanged(dataEvents: DataEventBuffer) {
+        for (event in dataEvents) {
+            when (event.type) {
+                DataEvent.TYPE_CHANGED -> {
+                    Log.d("Wear", "DataItem cambiado: ${event.dataItem.uri}")
+                }
+                DataEvent.TYPE_DELETED -> {
+                    Log.d("Wear", "DataItem eliminado: ${event.dataItem.uri}")
+                }
+            }
+            if (event.type == DataEvent.TYPE_CHANGED) {
+                val path = event.dataItem.uri.path
+                if (path == "/userData") {
+                    val dataMap = DataMapItem.fromDataItem(event.dataItem).dataMap
+                    val name = dataMap.getString("name") ?: "user"
+                    val paternal = dataMap.getString("paternal") ?: ""
+                    val maternal = dataMap.getString("maternal") ?: ""
+                    val cellphoneStr = dataMap.getString("cellphone") ?: ""
+                    val email = dataMap.getString("email") ?: ""
+                    val token = dataMap.getString("token") ?: ""
+                    val role = dataMap.getString("role") ?: ""
+                    val isLoggedIn = dataMap.getBoolean("isLogged", false)
+
+                    Log.d("WearOS", "Perfil recibido: $name $paternal $maternal - $email")
+
+                    if (email.isNotEmpty()) {
+                        val user = UserConfig(
+                            name = Name(name, paternal, maternal),
+                            email = email,
+                            cellphone = Cellphone("+52", cellphoneStr),
+                            role = role,
+                            token = token,
+                            isLoggedIn = isLoggedIn
+                        )
+
+                        Log.i("Datos", user.toString())
+                        PrefsManager.saveUser(this, user)
+
+
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Wearable.getMessageClient(this).removeListener(this)
+        Wearable.getDataClient(this).removeListener(this)
     }
 }
 

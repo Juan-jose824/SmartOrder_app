@@ -56,4 +56,5 @@ dependencies {
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation ("com.google.android.gms:play-services-wearable:18.0.0")
 }

@@ -141,3 +141,16 @@ data class ReservationItem(
     val quantity: Int,
     val price: Double
 )
+
+
+data class dataSensors(
+    var bpm: Int,
+    var pressure: Float,
+    var gyroscope: GyroscopeData,
+)
+
+data class GyroscopeData (
+    val x: Float,
+    val y: Float,
+    val z: Float
+)

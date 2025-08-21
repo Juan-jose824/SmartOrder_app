@@ -24,6 +24,7 @@ import com.example.smartorder_app.utils.Cellphone
 import com.example.smartorder_app.utils.Name
 import com.example.smartorder_app.utils.PrefsManager
 import com.example.smartorder_app.utils.UserConfig
+import com.example.smartorder_app.utils.sendUserToWatch
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -88,6 +89,8 @@ class MainActivity : AppCompatActivity() {
                                 jsonResp.optString("token"),
                                 remember
                             )
+                            Log.i("Nose algo", newUser.toString())
+                            sendUserToWatch(this, newUser)
 
                             PrefsManager.saveUser(this, newUser)
 
@@ -116,6 +119,14 @@ class MainActivity : AppCompatActivity() {
 
         // Cargar fragment por defecto
         replaceFragment(RestaurantesFragment())
+
+        val UserInfo: UserConfig? = PrefsManager.loadUser(this)
+
+        if (UserInfo != null) {
+            Log.i("Nose algo", UserInfo.toString())
+
+            sendUserToWatch(this, UserInfo)
+        }
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
